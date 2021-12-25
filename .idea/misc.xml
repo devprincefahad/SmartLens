@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/1pfch/AndroidStudioProjects/SmartLens/app/src/main/res/layout/activity_barcode.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/1pfch/AndroidStudioProjects/SmartLens/app/src/main/res/layout/activity_base_lens.xml" value="0.17238183503243745" />
+        <entry key="..\:/Users/1pfch/AndroidStudioProjects/SmartLens/app/src/main/res/layout/activity_camera.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/1pfch/AndroidStudioProjects/SmartLens/app/src/main/res/layout/activity_lens.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/1pfch/AndroidStudioProjects/SmartLens/app/src/main/res/layout/activity_main.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/1pfch/AndroidStudioProjects/SmartLens/app/src/main/res/layout/activity_splash.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/1pfch/AndroidStudioProjects/SmartLens/app/src/main/res/layout/card_layout.xml" value="0.17222222222222222" />
+        <entry key="..\:/Users/1pfch/AndroidStudioProjects/TryPhotoLens/app/src/main/res/layout/activity_base_lens.xml" value="0.175" />
+        <entry key="..\:/Users/1pfch/AndroidStudioProjects/TryPhotoLens/app/src/main/res/layout/activity_lens.xml" value="0.175" />
+        <entry key="..\:/Users/1pfch/AndroidStudioProjects/TryPhotoLens/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/1pfch/AndroidStudioProjects/TryPhotoLens/app/src/main/res/layout/bottomsheet_fragment.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/1pfch/AndroidStudioProjects/TryPhotoLens/app/src/main/res/layout/card_layout.xml" value="0.175" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
