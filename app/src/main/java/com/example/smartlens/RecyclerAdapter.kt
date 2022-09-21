@@ -60,6 +60,7 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
         var itemTitle: TextView
         var itemDetail: TextView
         val context = itemView.context
+
         init {
             itemImage = itemView.findViewById(R.id.imgView)
             itemTitle = itemView.findViewById(R.id.tvTitle)
@@ -71,24 +72,44 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
             }
 
         }
+
         private fun passData(pos: Int) {
             when (pos) {
                 0 -> {
-                    context.startActivity(Intent(context, BarcodeActivity::class.java).putExtra("tb",title[pos]))
+                    context.startActivity(
+                        Intent(
+                            context,
+                            BarcodeActivity::class.java
+                        ).putExtra("tb", title[pos])
+                    )
                 }
                 1 -> {
-                    context.startActivity(Intent(context, FaceDetectActivity::class.java).putExtra("tb",title[pos]))
+                    context.startActivity(
+                        Intent(
+                            context,
+                            FaceDetectActivity::class.java
+                        ).putExtra("tb", title[pos])
+                    )
                 }
                 2 -> {
-                    context.startActivity(Intent(context, ImageLabelingActivity::class.java).putExtra("tb",title[pos]))
+                    context.startActivity(
+                        Intent(
+                            context,
+                            ImageLabelingActivity::class.java
+                        ).putExtra("tb", title[pos])
+                    )
                 }
                 3 -> {
-                    context.startActivity(Intent(context, TextRecognitionActivity::class.java).putExtra("tb",title[pos]))
+                    context.startActivity(
+                        Intent(
+                            context,
+                            TextRecognitionActivity::class.java
+                        ).putExtra("tb", title[pos])
+                    )
                 }
             }
         }
     }
-
 
 
 }
