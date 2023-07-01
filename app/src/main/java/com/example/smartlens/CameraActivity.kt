@@ -21,7 +21,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
-import kotlinx.android.synthetic.main.activity_camera.*
+import com.example.smartlens.databinding.ActivityCameraBinding
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
@@ -29,16 +29,18 @@ import java.io.OutputStream
 class CameraActivity : AppCompatActivity() {
 
     companion object {
+
         @JvmStatic
         val CAMERA_PERM_CODE = 422
     }
 
     private var imageCapture: ImageCapture? = null
+    private lateinit var binding: ActivityCameraBinding
 
     private fun createNextPhoto(): Pair<Uri, OutputStream> {
         val displayName = "IMG" + System.currentTimeMillis()
         val fileName = "MLKitSample" + File.separator +
-                displayName + ".jpg"
+            displayName + ".jpg"
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             val contentValues = ContentValues().apply {
                 put(MediaStore.MediaColumns.DISPLAY_NAME, displayName)
@@ -61,7 +63,6 @@ class CameraActivity : AppCompatActivity() {
             return Pair(file.toUri(), FileOutputStream(file))
         }
 
-
     }
 
     private fun askCameraPermission() {
@@ -77,15 +78,13 @@ class CameraActivity : AppCompatActivity() {
         cameraProviderFuture.addListener(
             Runnable {
                 val cameraProvider = cameraProviderFuture.get()
-
                 val preview = Preview.Builder()
                     .build()
                     .also {
-                        it.setSurfaceProvider(previewView.surfaceProvider)
+                        it.setSurfaceProvider(binding.previewView.surfaceProvider)
                     }
 
                 imageCapture = ImageCapture.Builder().build()
-
                 val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
                 try {
@@ -94,10 +93,8 @@ class CameraActivity : AppCompatActivity() {
                 } catch (ex: Exception) {
                     Log.e("CAM", "Error bindind camera", ex)
                 }
-
             },
             ContextCompat.getMainExecutor(this)
-
         )
 
     }
@@ -137,11 +134,12 @@ class CameraActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_camera)
+        binding = ActivityCameraBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         askCameraPermission()
 
-        btnTakePhoto.setOnClickListener { takePhoto() }
+        binding.btnTakePhoto.setOnClickListener { takePhoto() }
 
     }
 

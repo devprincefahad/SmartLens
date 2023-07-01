@@ -1,7 +1,6 @@
 package com.example.smartlens
 
 import android.Manifest
-import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
@@ -15,21 +14,23 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.example.smartlens.barcode.BarcodeAnalyzer
-import kotlinx.android.synthetic.main.activity_base_lens.*
+import com.example.smartlens.databinding.ActivityBaseLensBinding
 
 abstract class BaseLensActivity : AppCompatActivity(), BarcodeAnalyzer.SampleInterface {
 
     companion object {
+
         @JvmStatic
         val CAMERA_PERM_CODE = 422
     }
 
     override fun getResult(value: String) {
-        tvOutput.text = value
+        binding.tvOutput.text = value
     }
 
     abstract val imageAnalyzer: ImageAnalysis.Analyzer
     protected lateinit var imageAnalysis: ImageAnalysis
+    lateinit var binding: ActivityBaseLensBinding
 
     private fun askCameraPermission() {
         ActivityCompat.requestPermissions(
@@ -44,16 +45,14 @@ abstract class BaseLensActivity : AppCompatActivity(), BarcodeAnalyzer.SampleInt
         cameraProviderFuture.addListener(
             Runnable {
                 val cameraProvider = cameraProviderFuture.get()
-
                 val preview = Preview.Builder()
                     .build()
                     .also {
-                        it.setSurfaceProvider(previewBarcode.surfaceProvider)
+                        it.setSurfaceProvider(binding.previewBarcode.surfaceProvider)
                     }
 
                 imageAnalysis = ImageAnalysis.Builder()
                     .build()
-
                 val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
                 try {
@@ -62,10 +61,8 @@ abstract class BaseLensActivity : AppCompatActivity(), BarcodeAnalyzer.SampleInt
                 } catch (ex: Exception) {
                     Log.e("CAM", "Error bindind camera", ex)
                 }
-
             },
             ContextCompat.getMainExecutor(this)
-
         )
     }
 
@@ -73,22 +70,21 @@ abstract class BaseLensActivity : AppCompatActivity(), BarcodeAnalyzer.SampleInt
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_base_lens)
+        binding = ActivityBaseLensBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val tb = intent.getStringExtra("tb")
-        nameTv.text = tb
+        binding.nameTv.text = tb
 
-        toolbar.setNavigationOnClickListener {
+        binding.toolbar.setNavigationOnClickListener {
             finish()
         }
 
         askCameraPermission()
-
 //        val bottomSheetFragment = BottomSheetFragment()
-        btnStartScanner.setOnClickListener {
-            btnStartScanner.isVisible = false
+        binding.btnStartScanner.setOnClickListener {
+            binding.btnStartScanner.isVisible = false
             startScanner()
-
 //            bottomSheetFragment.show(supportFragmentManager,"BottomSheetDialog")
         }
     }
@@ -113,6 +109,5 @@ abstract class BaseLensActivity : AppCompatActivity(), BarcodeAnalyzer.SampleInt
 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
-
 
 }

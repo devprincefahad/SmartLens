@@ -5,10 +5,8 @@ import android.content.Context
 import android.util.Log
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
-import com.example.smartlens.BaseLensActivity
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.common.InputImage
-import kotlinx.android.synthetic.main.activity_base_lens.*
 
 class BarcodeAnalyzer(val context: Context,val si: SampleInterface) : ImageAnalysis.Analyzer {
 
